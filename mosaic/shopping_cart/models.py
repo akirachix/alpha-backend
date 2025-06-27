@@ -1,8 +1,12 @@
 from django.db import models
-from traders.models import Trader
+from users.models import Users
+from catalogue.models import Design
 
-# Create your models here.
+
 class Shopping_cart(models.Model):
-    trader = models.ForeignKey(Trader, on_delete= models.CASCADE)
+    #user = models.ForeignKey(Users, on_delete= models.CASCADE, default="")
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits = 10, decimal_places = 2)
+    #design=models.ForeignKey(Design, on_delete= models.CASCADE , default="")
+
+
