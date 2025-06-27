@@ -3,10 +3,9 @@ from users.models import Users
 
 USER_TYPE_CHOICES = [
     ('designer', 'Designer'),
-    ('customer', 'Customer'),
+    ('trader', 'Trader'),
  
 ]
-
 
 class Order(models.Model):
     design_order = models.AutoField(primary_key=True)
