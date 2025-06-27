@@ -54,8 +54,9 @@ INSTALLED_APPS = [
     'design_review',
     'shopping_cart',
     'transaction',
+    'users',
 
-
+    'rest_framework',
 
 ]
 
