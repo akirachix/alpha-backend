@@ -1,7 +1,4 @@
 from django.test import TestCase
 
-from .models import Shopping_cart
-
-
 
 # Create your tests here.
