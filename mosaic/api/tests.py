@@ -1,30 +1,33 @@
 from rest_framework.test import APITestCase
-from rest_framework import status
-from users.models import Users
-class UserAPITestCase(APITestCase):
-   def setUp(self):
-       self.user_data = {
-           full_name="Paoli Endric",
-           email="paoli23red@gmail.com",
-           phone_number="0737845625",
-           password="paolire384",
-           latitude="4.0",
-           longitude="3.0",
-           user_type="Designer"
-       }
-       self.users = Users.objects.create(**self.user_data)
-       self.url = "/api/users/"
+from django.urls import reverse
 
-   def test_get_user(self):
-       response = self.client.get(f"{self.url}{self.users.id}/", format="json")
-       self.assertEqual(response.status_code, status.HTTP_200_OK)
-   def test_update_user(self):
-       updated_data = self.user_data.copy()
-       updated_data["full_name"] = "Paoli Endric"
-       response = self.client.put(f"{self.url}{self.users.id}/", updated_data, format="json")
-       self.assertEqual(response.status_code, status.HTTP_200_OK)
-       self.assertEqual(response.data["full_name"], "Paolina Sandra")
-   def test_delete_user(self):
-       response = self.client.delete(f"{self.url}{self.users.user_id}/")
-       self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+class UsersAPITestCase(APITestCase):
+    def setUp(self):
+        self.user_data = {
+            'full_name': 'Max Robinson',
+            'email': 'maxrob145@gmail.com',
+            'phone_number': '0762384756',
+            'password': 'maxinmall23',
+            'latitude': 5.0,
+            'longitude': 4.0,
+            'user_type': 'Designer'
+        }
+        self.base_url = reverse('users-list')        
+    def create_user(self):
+        response = self.client.post(self.base_url, self.user_data, format='json')
+        self.assertEqual(response.data['email'], self.user_data['email'])
+    def read_user_list(self):
+        response = self.client.get(self.base_url)
+        self.assertGreaterEqual(len(response.data), 1)
+    def read_single_user(self):
+        response = self.client.get(self.detail_url)
+        self.assertEqual(response.data['email'], self.user_data['email'])
+    def update_user(self):
+        updated_data['email'] = 'maxrobi123@gmail.com'
+        updated_data['full_name'] = 'Maxton Robinson'
+        response = self.client.put(self.detail_url, updated_data, format='json')
+        self.assertEqual(response.data['email'], 'maxrobi123@gmail.com')
+    def delete_user(self):
+        response = self.client.delete(self.detail_url)
+        self.assertFalse(Users.objects.filter(id=self.user.id).exists())
     
