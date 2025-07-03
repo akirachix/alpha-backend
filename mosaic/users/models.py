@@ -5,7 +5,6 @@ USER_TYPE_CHOICES = [
        ('Trader', 'Trader'),
 ]
 
-
 class Users(models.Model):
    full_name = models.CharField(max_length=255)
    email = models.EmailField(unique=True)
@@ -14,8 +13,6 @@ class Users(models.Model):
    latitude = models.FloatField()
    longitude = models.FloatField()
    user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, default='designer')
-
-
 
 
 def __str__(self):
