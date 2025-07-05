@@ -36,10 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-
-   
-
-
     'catalogue'
     'api',
     'rest_framework',
