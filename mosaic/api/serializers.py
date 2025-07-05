@@ -6,3 +6,9 @@ class DesignSerializer(serializers.ModelSerializer):
               model=Design
               fields="__all__"
 
+
+
+
+
+
+
