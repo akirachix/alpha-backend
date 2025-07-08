@@ -3,7 +3,7 @@ from shopping_cart.models import Shopping_cart
 
 
 
-class  Shopping_cartSerializer(serializers.ModelSerializer):
+class  ShoppingCartSerializer(serializers.ModelSerializer):
        class Meta:
               model=Shopping_cart
               fields="__all__"
