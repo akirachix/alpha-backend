@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Location</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+ 
+</head>
+<body>
+  <h2>My Location Details</h2>
+  <button onclick="getLocationAndShow()">Get My Location</button>
+  <div class="info-box">
+    <div class="label">Coordinates</div>
+    <div id="coords">—</div>
+    <div class="label">City </div>
+    <div id="city">—</div>
+    <div class="label">Country </div>
+    <div id="country">—</div>
+  </div>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    let map;
+    function getLocationAndShow() {
+      if (!navigator.geolocation) {
+        alert("Geolocation is not supported by this browser.");
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    }
+    function successCallback(position) {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      document.getElementById("coords").innerText = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+      fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
+        .then(res => res.json())
+        .then(data => {
+          const addr = data.address;
+          const city = addr.city || "Not found";
+          const country = addr.country || "Not found";
+          document.getElementById("city").innerText = city;
+          document.getElementById("country").innerText = country;
+        })
+        .catch(err => {
+          alert("Failed to get address.");
+          console.error(err);
+        });
+      
+      if (map) {
+        map.setView([lat, lng], 15);
+      } else {
+        map = L.map('map').setView([lat, lng], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+      }
+     
+      L.marker([lat, lng]).addTo(map)
+        .bindPopup(`You are here<br>Lat: ${lat.toFixed(5)}, Lng: ${lng.toFixed(5)}`)
+        .openPopup();
+    }
+    function errorCallback(error) {
+      alert("Failed to get location: " + error.message);
+    }
+  </script>
+
+ <style>
+    body {
+      background: #b3abab;
+      padding: 30px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 10px;
+      color:rgb(122, 80, 25);
+      font-size: 170%;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #3d4b58;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #5e666d;
+    }
+    .info-box {
+      margin-top: 25px;
+      background: #fff;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .label {
+      font-weight: bold;
+      margin-top: 10px;
+      color: rgb(61, 43, 8);
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+      max-width: 600px;
+      margin: 25px auto;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+    }
+  </style>
+</body>
+</html>
