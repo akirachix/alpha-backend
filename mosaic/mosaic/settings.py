@@ -57,9 +57,8 @@ INSTALLED_APPS = [
     'api',
      'rest_framework',
 
-
-
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,4 +140,11 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+EFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+DARAJA_CONSUMER_KEY = 'pl0NW3KA6g1GpAGFUWvQns4EY50PS3E08s8cmXTNLAGJa6S7'
+DARAJA_CONSUMER_SECRET = 'nNnJZNZYCL39mbjTWJltXccAi5rfCWsN4B9FyDMPPUjozaIG1n5soIsePP4ZBQ7U'
+DARAJA_SHORTCODE = '174379'
+DARAJA_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
+DARAJA_CALLBACK_URL = 'https://mydomain.com/path'
