@@ -12,8 +12,11 @@ class Users(models.Model):
    password = models.CharField(max_length=128)
    latitude = models.FloatField()
    longitude = models.FloatField()
-   user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, default='designer')
+   address = models.CharField(max_length=512, blank=True, null=True)
+   user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, default='Designer')
 
 
 def __str__(self):
        return f"{self.full_name} ({self.get_type_display()})"
+
+
