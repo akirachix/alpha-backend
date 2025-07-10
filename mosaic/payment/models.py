@@ -2,7 +2,6 @@ from django.db import models
 from order.models import Order
 from users.models import Users
 
-
 class Payment(models.Model):
    order = models.ForeignKey(Order, on_delete=models.CASCADE)
    users = models.ForeignKey(Users, on_delete=models.CASCADE)

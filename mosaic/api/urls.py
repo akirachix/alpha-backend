@@ -13,11 +13,6 @@ urlpatterns=[path("",include(router.urls)),
 
 
 
-from.views import DesignViewSet
-router=DefaultRouter()
-router.register(r"design",DesignViewSet,basename="design")
-urlpatterns=[path("",include(router.urls)),]
-
 
 
 

@@ -13,11 +13,7 @@ class STKPushSerializer(serializers.Serializer):
    account_reference = serializers.CharField()
    transaction_desc = serializers.CharField()
 
-from catalogue.models import Design
-class DesignSerializer(serializers.ModelSerializer):
-       class Meta:
-              model=Design
-              fields="__all__"
+
 
 
 

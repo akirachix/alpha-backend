@@ -14,7 +14,6 @@ from rest_framework.response import Response
 
 
 
-
 class PaymentViewSet(viewsets.ModelViewSet):
    queryset=Payment.objects.all()
    serializer_class=PaymentSerializer

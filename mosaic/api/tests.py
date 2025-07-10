@@ -18,6 +18,7 @@ def sample_payment():
         paid_at=date.today()
     )
 
+
 class TestPaymentAPI:
     def test_create_payment(self, api_client):
         url = reverse("payment-list")
