@@ -1,7 +1,9 @@
 from rest_framework import viewsets
 from users.models import Users
 from .serializers import UsersSerializer
-from api.utils import get_coordinates_from_address  
+from api.utils import get_coordinates_from_address 
+import requests
+
 
 def get_coordinates_from_address(address):
     url = 'https://nominatim.openstreetmap.org/search'
