@@ -4,9 +4,6 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-
-
-
 # Create your tests here.
 class ShoppingCartTests(APITestCase):
    def setUp(self):
@@ -19,8 +16,6 @@ class ShoppingCartTests(APITestCase):
        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
-
-
    def test_put_shoppingCart(self):
        Shopping_cart.objects.create(**self.Cart_data)
        Shopping_cart=Shopping_cart.objects.first()
@@ -29,16 +24,12 @@ class ShoppingCartTests(APITestCase):
        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
-
-
    def test_delete_shoppingCart(self):
        Shopping_cart.objects.create(**self.Cart_data)
        Shopping_cart=Shopping_cart.objects.first()
        url=reverse ("shopping_cart-list", args =[Shopping_cart.id])
        response=self.client.delete(url)
        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-
-
 
 
    def test_post_shoppingCart(self):
