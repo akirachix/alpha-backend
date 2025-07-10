@@ -6,6 +6,7 @@ from datetime import date
 from payment.models import Payment
 from decimal import Decimal
 
+
 def api_client():
     return APIClient()
 
@@ -53,3 +54,4 @@ class TestPaymentAPI:
         response = api_client.delete(url)
         assert response.status_code == status.HTTP_204_NO_CONTENT
         assert not Payment.objects.filter(id=sample_payment.id).exists()
+
