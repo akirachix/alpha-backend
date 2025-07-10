@@ -1,77 +1,113 @@
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from django.urls import reverse
 from transaction.models import Transaction
 from design_review.models import DesignReview
+from decimal import Decimal
 
-class TransactionViewSetTests(APITestCase):
+
+class TransactionAPITestCase(APITestCase):
     def setUp(self):
-        self.transaction_url = reverse('transaction-list')
-        self.transaction_data = {
-            'amount': 100.00,
-            'description': 'Test transaction'
-        }
-        self.transaction = Transaction.objects.create(**self.transaction_data)
+        self.transaction1 = Transaction.objects.create(
+            amount=Decimal("100.00"),
+            platform_fee=Decimal("5.00")
+        )
+        self.transaction2 = Transaction.objects.create(
+            amount=Decimal("200.00"),
+            platform_fee=Decimal("10.00")
+        )
+        self.transaction_list_url = reverse('transaction-list')
+        self.transaction_detail_url = reverse('transaction-detail', kwargs={'pk': self.transaction1.pk})
+
+    def test_get_transaction_list(self):
+        response = self.client.get(self.transaction_list_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+
+    def test_get_transaction_detail(self):
+        response = self.client.get(self.transaction_detail_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Decimal(response.data['amount']), Decimal("100.00"))
+        self.assertEqual(Decimal(response.data['platform_fee']), Decimal("5.00"))
 
     def test_create_transaction(self):
-        response = self.client.post(self.transaction_url, self.transaction_data, format='json')
+        data = {
+            'amount': "150.00",
+            'platform_fee': "7.50"
+        }
+        response = self.client.post(self.transaction_list_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Transaction.objects.count(), 2)  # One existing + one created
-        self.assertEqual(Transaction.objects.get(description='Test transaction').description, 'Test transaction')
-
-    def test_get_transactions(self):
-        response = self.client.get(self.transaction_url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)  # One transaction exists
+        self.assertEqual(Transaction.objects.count(), 3)
+        self.assertEqual(Decimal(response.data['amount']), Decimal("150.00"))
 
     def test_update_transaction(self):
-        update_data = {
-            'amount': 150.00,
-            'description': 'Updated transaction'
+        data = {
+            'amount': "300.00",
+            'platform_fee': "15.00"
         }
-        response = self.client.put(reverse('transaction-detail', args=[self.transaction.id]), update_data, format='json')
+        response = self.client.put(self.transaction_detail_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.transaction.refresh_from_db()
-        self.assertEqual(self.transaction.amount, 150.00)
-        self.assertEqual(self.transaction.description, 'Updated transaction')
+        self.transaction1.refresh_from_db()
+        self.assertEqual(self.transaction1.amount, Decimal("300.00"))
+        self.assertEqual(self.transaction1.platform_fee, Decimal("15.00"))
 
     def test_delete_transaction(self):
-        response = self.client.delete(reverse('transaction-detail', args=[self.transaction.id]))
+        response = self.client.delete(self.transaction_detail_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(Transaction.objects.count(), 0)  # Transaction should be deleted
+        self.assertEqual(Transaction.objects.count(), 1)
+        self.assertFalse(Transaction.objects.filter(pk=self.transaction1.pk).exists())
 
-class DesignReviewViewSetTests(APITestCase):
+
+class DesignReviewAPITestCase(APITestCase):
     def setUp(self):
-        self.design_review_url = reverse('design_review-list')
-        self.design_review_data = {
-            'reviewer': 'John Doe',
-            'comments': 'Looks good!'
-        }
-        self.design_review = DesignReview.objects.create(**self.design_review_data)
+        
+        self.design_review1 = DesignReview.objects.create(
+            rating_value=5,
+            comment="Great design!"
+        )
+        self.design_review2 = DesignReview.objects.create(
+            rating_value=3,
+            comment="Needs improvement"
+        )
+        self.design_review_list_url = reverse('design_review-list')
+        self.design_review_detail_url = reverse('design_review-detail', kwargs={'pk': self.design_review1.pk})
+
+    def test_get_design_review_list(self):
+        response = self.client.get(self.design_review_list_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+
+    def test_get_design_review_detail(self):
+        response = self.client.get(self.design_review_detail_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['rating_value'], 5)
+        self.assertEqual(response.data['comment'], "Great design!")
 
     def test_create_design_review(self):
-        response = self.client.post(self.design_review_url, self.design_review_data, format='json')
+        data = {
+            'rating_value': 4,
+            'comment': "Good work"
+        }
+        response = self.client.post(self.design_review_list_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(DesignReview.objects.count(), 2)  # One existing + one created
-        self.assertEqual(DesignReview.objects.get(comments='Looks good!').comments, 'Looks good!')
-
-    def test_get_design_reviews(self):
-        response = self.client.get(self.design_review_url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)  # One design review exists
+        self.assertEqual(DesignReview.objects.count(), 3)
+        self.assertEqual(response.data['rating_value'], 4)
 
     def test_update_design_review(self):
-        update_data = {
-            'reviewer': 'Jane Doe',
-            'comments': 'Updated review'
+        data = {
+            'rating_value': 2,
+            'comment': "Updated comment"
         }
-        response = self.client.put(reverse('design_review-detail', args=[self.design_review.id]), update_data, format='json')
+        response = self.client.put(self.design_review_detail_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.design_review.refresh_from_db()
-        self.assertEqual(self.design_review.reviewer, 'Jane Doe')
-        self.assertEqual(self.design_review.comments, 'Updated review')
+        self.design_review1.refresh_from_db()
+        self.assertEqual(self.design_review1.rating_value, 2)
+        self.assertEqual(self.design_review1.comment, "Updated comment")
 
     def test_delete_design_review(self):
-        response = self.client.delete(reverse('design_review-detail', args=[self.design_review.id]))
+        response = self.client.delete(self.design_review_detail_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(DesignReview.objects.count(), 0)  # Design review should be deleted
+        self.assertEqual(DesignReview.objects.count(), 1)
+        self.assertFalse(DesignReview.objects.filter(pk=self.design_review1.pk).exists())
+
+
