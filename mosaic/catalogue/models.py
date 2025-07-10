@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from django.core.validators import MinValueValidator
 
 class Design(models.Model):
     design_id = models.CharField(primary_key=True, max_length=50)

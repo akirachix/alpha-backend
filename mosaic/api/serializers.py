@@ -13,3 +13,16 @@ class STKPushSerializer(serializers.Serializer):
    amount = serializers.DecimalField(max_digits=10, decimal_places=2)
    account_reference = serializers.CharField()
    transaction_desc = serializers.CharField()
+
+from catalogue.models import Design
+class DesignSerializer(serializers.ModelSerializer):
+       class Meta:
+              model=Design
+              fields="__all__"
+
+
+
+
+
+
+

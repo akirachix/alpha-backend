@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+
 from payment.models import Payment 
 from .serializers import PaymentSerializer
 
@@ -38,8 +39,11 @@ class STKPushView(APIView):
            return Response(response)
        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
+from catalogue.models import Design
+from .serializers import DesignSerializer
+class DesignViewSet(viewets.ModelViewSet):
+    queryset=Design.objects.all()
+    serializer_class=DesignSerializer
 
 @api_view(['POST'])
 def daraja_callback(request):
