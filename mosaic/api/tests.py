@@ -29,11 +29,13 @@ class TestPaymentAPI:
         response = api_client.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
         assert response.data["amount"] == "1500.00"
+        
     def test_read_payment(self, api_client, sample_payment):
         url = reverse("payment-detail", args=[sample_payment.id])
         response = api_client.get(url)
         assert response.status_code == status.HTTP_200_OK
         assert response.data["phone_number"] == sample_payment.phone_number
+
     def test_update_payment(self, api_client, sample_payment):
         url = reverse("payment-detail", args=[sample_payment.id])
         updated_data = {
@@ -45,6 +47,7 @@ class TestPaymentAPI:
         response = api_client.put(url, updated_data, format="json")
         assert response.status_code == status.HTTP_200_OK
         assert response.data["amount"] == "2000.00"
+
     def test_delete_payment(self, api_client, sample_payment):
         url = reverse("payment-detail", args=[sample_payment.id])
         response = api_client.delete(url)

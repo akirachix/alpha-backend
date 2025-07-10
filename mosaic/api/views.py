@@ -18,9 +18,9 @@ class PaymentViewSet(viewsets.ModelViewSet):
    queryset=Payment.objects.all()
    serializer_class=PaymentSerializer
 
-# class OrderViewSet(viewsets.ModelViewSet):
-#    queryset = Order.objects.all()
-#    serializer_class = OrderSerializer
+class OrderViewSet(viewsets.ModelViewSet):
+   queryset = Order.objects.all()
+   serializer_class = OrderSerializer
 
 
 class STKPushView(APIView):

@@ -7,7 +7,6 @@ class PaymentSerializer(serializers.ModelSerializer):
        model = Payment
        fields = "__all__"
 
-
 class STKPushSerializer(serializers.Serializer):
    phone_number = serializers.CharField()
    amount = serializers.DecimalField(max_digits=10, decimal_places=2)
