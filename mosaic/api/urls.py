@@ -8,3 +8,10 @@ router.register(r'users', UsersViewSet, basename='users')
 urlpatterns = [
     path('api/', include(router.urls)),
 ]
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from users.models import Users
-from api.serializers import UsersSerializer
-from api.utils import get_coordinates_from_address
+from .serializers import UsersSerializer
+from api.utils import get_coordinates_from_address  
 
 def get_coordinates_from_address(address):
     url = 'https://nominatim.openstreetmap.org/search'
@@ -15,7 +15,6 @@ def get_coordinates_from_address(address):
         data = response.json()[0]
         return float(data['lat']), float(data['lon'])
     return None, None
-    
 
 class UsersViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
@@ -23,16 +22,17 @@ class UsersViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         address = self.request.data.get('address')
+        lat, lon = None, None
         if address:
             lat, lon = get_coordinates_from_address(address)
-            serializer.save(latitude=lat, longitude=lon)
-        else:
-            serializer.save(latitude=None, longitude=None)
+        serializer.save(latitude=lat, longitude=lon)
 
     def perform_update(self, serializer):
         address = self.request.data.get('address')
+        lat, lon = None, None
         if address:
             lat, lon = get_coordinates_from_address(address)
-            serializer.save(latitude=lat, longitude=lon)
-        else:
-            serializer.save()
+        serializer.save(latitude=lat, longitude=lon)
+
+
+

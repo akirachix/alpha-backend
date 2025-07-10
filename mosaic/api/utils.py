@@ -7,7 +7,7 @@ def get_coordinates_from_address(address):
     try:
         url = "https://nominatim.openstreetmap.org/search"
         params = {
-            "q": address,
+            "adress": address,
             "format": "json",
             "limit": 1
         }
@@ -17,8 +17,8 @@ def get_coordinates_from_address(address):
         data = response.json()
         if data:
             return float(data[0]["lat"]), float(data[0]["lon"])
-        print(f"No coordinates found for address: {address}")
+        print(f"No coordinates found for: {address}")
         return None, None
     except Exception as e:
-        print(f"Geocoding failed for address {address}: {str(e)}")
+        print(f"Geocoding failed for {address}: {str(e)}")
         return None, None
