@@ -1,6 +1,6 @@
 from django.db import models
-from users.models import Users
-from catalogue.models import Design
+# from users.models import Users
+# from catalogue.models import Design
 
 
 class Shopping_cart(models.Model):
