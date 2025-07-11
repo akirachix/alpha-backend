@@ -5,10 +5,11 @@ from api.utils import get_coordinates_from_address
 import requests
 
 
+
 def get_coordinates_from_address(address):
     url = 'https://nominatim.openstreetmap.org/search'
     params = {
-        'address': address,
+        'q': address,
         'format': 'json',
         'limit': 1
     }
