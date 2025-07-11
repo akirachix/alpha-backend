@@ -1,5 +1,18 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from .views import UsersViewSet
+
+router = DefaultRouter()
+router.register(r'users', UsersViewSet, basename='users')
+
+urlpatterns = [
+    path('api/', include(router.urls)),
+]
+
+
+
+
+
 from .views import ( TransactionViewSet, DesignReviewViewSet)
 router = DefaultRouter()
 router.register(r"transaction", TransactionViewSet, basename="transaction")
@@ -13,4 +26,5 @@ from.views import DesignViewSet
 router=DefaultRouter()
 router.register(r"design",DesignViewSet,basename="design")
 urlpatterns=[path("",include(router.urls)),]
+
 
