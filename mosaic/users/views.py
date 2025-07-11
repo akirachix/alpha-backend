@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+from django.shortcuts import render
+
+from rest_framework import viewsets
+from .models import Users
+from .serializers import UsersSerializer
+
+
+class UsersViewSet(viewsets.ModelViewSet):
+   queryset = Users.objects.all()
+   serializer_class = UsersSerializer
+=======
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
@@ -26,3 +38,4 @@ class UserCreateView(generics.CreateAPIView):
 
 
 
+>>>>>>> af3f64c53f9e112c757ad6cc5ba6edcbfb6c27e8
