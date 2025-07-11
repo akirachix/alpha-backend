@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+<<<<<<< HEAD
 
     'django.contrib.staticfiles',
     'designers',
@@ -55,6 +56,11 @@ INSTALLED_APPS = [
     'shopping_cart',
     'transaction',
     'users',
+=======
+    'catalogue'
+    'api',
+    'rest_framework',
+>>>>>>> f716beba9e48da903ad17573b6fdc841dc4e42ad
 
     'rest_framework',
     

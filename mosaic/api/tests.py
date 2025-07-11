@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from rest_framework.test import APITestCase
 from django.urls import reverse
 from django.test import TestCase
@@ -74,3 +75,8 @@ class UsersModelTestCase(TestCase):
         user_id = user.id
         user.delete()
         self.assertFalse(Users.objects.filter(id=user_id).exists())
+=======
+from django.test import TestCase
+
+
+>>>>>>> f716beba9e48da903ad17573b6fdc841dc4e42ad
