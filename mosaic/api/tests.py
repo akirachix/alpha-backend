@@ -74,7 +74,7 @@ class UsersModelTestCase(TestCase):
         user_id = user.id
         user.delete()
         self.assertFalse(Users.objects.filter(id=user_id).exists())
-=======
+
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
