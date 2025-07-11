@@ -38,28 +38,36 @@ INSTALLED_APPS = [
     'django.contrib.messages',
 
 
+
     'django.contrib.staticfiles',
-    'designers',
-    'users',
+    
+
 
     
 
-    'traders',
+    'users',
 
 
     'payment',
 
     
-    'order',
+    
 
+    
     'design_review',
-    'shopping_cart',
     'transaction',
 
     'catalogue',
 
+
     'api',
     'rest_framework',
+    
+
+
+    
+    
+
 
 ]
 
@@ -83,6 +91,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
