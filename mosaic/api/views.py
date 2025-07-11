@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets
 from django.shortcuts import render
 from .serializers import TransactionSerializer,DesignReviewSerializer
@@ -20,8 +19,6 @@ from .serializers import DesignSerializer
 class DesignViewSet(viewets.ModelViewSet):
     queryset=Design.objects.all()
     serializer_class=DesignSerializer
-
-
 
 
 
