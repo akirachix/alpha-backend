@@ -36,35 +36,19 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-<<<<<<< HEAD
 
     'django.contrib.staticfiles',
     'designers',
-
-
-    'catalogue',
-
     'traders',
-
-
     'payment',
-
-    'api',
     'order',
-
     'design_review',
     'shopping_cart',
     'transaction',
     'users',
-=======
-    'catalogue'
+    'catalogue',
     'api',
     'rest_framework',
->>>>>>> f716beba9e48da903ad17573b6fdc841dc4e42ad
-
-    'rest_framework',
-    
-
 ]
 
 MIDDLEWARE = [

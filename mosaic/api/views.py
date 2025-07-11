@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from rest_framework import viewsets
 from users.models import Users
 from .serializers import UsersSerializer
@@ -39,12 +39,12 @@ class UsersViewSet(viewsets.ModelViewSet):
         serializer.save(latitude=lat, longitude=lon)
 
 
-=======
+
 from django.shortcuts import render
 from rest_framework import viewsets
 from catalogue.models import Design
 from .serializers import DesignSerializer
-class DesignViewSet(viewets.ModelViewSet):
+class DesignViewSet(viewsets.ModelViewSet):
     queryset=Design.objects.all()
     serializer_class=DesignSerializer
 
@@ -54,5 +54,5 @@ class DesignViewSet(viewets.ModelViewSet):
 
 
   
->>>>>>> f716beba9e48da903ad17573b6fdc841dc4e42ad
+
 
