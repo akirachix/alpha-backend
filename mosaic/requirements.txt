@@ -4,6 +4,11 @@ charset-normalizer==3.4.2
 django==5.2.4
 djangorestframework==3.16.0
 idna==3.10
+<<<<<<< HEAD
+=======
+markdown==3.8.2
+pygments==2.19.2
+>>>>>>> a209c0287a3cb5b9187c14926657a5a1c0cd4ff2
 requests==2.32.4
 sqlparse==0.5.3
 urllib3==2.5.0

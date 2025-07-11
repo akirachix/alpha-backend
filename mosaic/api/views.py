@@ -1,5 +1,7 @@
+
 from rest_framework import viewsets
 from django.shortcuts import render
+
 from .serializers import ShoppingCartSerializer
 from shopping_cart.models import Shopping_cart
 
@@ -7,3 +9,105 @@ from shopping_cart.models import Shopping_cart
 class ShoppingCartViewSet(viewsets.ModelViewSet):
    queryset=Shopping_cart.objects.all()
    serializer_class=ShoppingCartSerializer
+from .serializers import TransactionSerializer,DesignReviewSerializer
+from transaction.models import Transaction
+from design_review.models import DesignReview
+# Create your views here.
+class TransactionViewSet(viewsets.ModelViewSet):
+   queryset = Transaction.objects.all()
+   serializer_class = TransactionSerializer
+  
+class DesignReviewViewSet(viewsets.ModelViewSet):
+   queryset=DesignReview.objects.all()
+   serializer_class=DesignReviewSerializer
+
+from rest_framework import viewsets
+from users.models import Users
+from .serializers import UsersSerializer
+from api.utils import get_coordinates_from_address 
+import requests
+
+from django.shortcuts import render
+from rest_framework import viewsets
+
+from payment.models import Payment 
+from .serializers import PaymentSerializer
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .daraja import DarajaAPI
+from .serializers import STKPushSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+
+
+
+
+class PaymentViewSet(viewsets.ModelViewSet):
+   queryset=Payment.objects.all()
+   serializer_class=PaymentSerializer
+
+def get_coordinates_from_address(address):
+    url = 'https://nominatim.openstreetmap.org/search'
+    params = {
+        'address': address,
+        'format': 'json',
+        'limit': 1
+    }
+    response = requests.get(url, params=params, headers={'User-Agent': 'mosaic-app'})
+    if response.status_code == 200 and response.json():
+        data = response.json()[0]
+        return float(data['lat']), float(data['lon'])
+    return None, None
+
+class UsersViewSet(viewsets.ModelViewSet):
+    queryset = Users.objects.all()
+    serializer_class = UsersSerializer
+
+    def perform_create(self, serializer):
+        address = self.request.data.get('address')
+        lat, lon = None, None
+        if address:
+            lat, lon = get_coordinates_from_address(address)
+        serializer.save(latitude=lat, longitude=lon)
+
+    def perform_update(self, serializer):
+        address = self.request.data.get('address')
+        lat, lon = None, None
+        if address:
+            lat, lon = get_coordinates_from_address(address)
+        serializer.save(latitude=lat, longitude=lon)
+
+
+
+# class OrderViewSet(viewsets.ModelViewSet):
+#    queryset = Order.objects.all()
+#    serializer_class = OrderSerializer
+
+
+class STKPushView(APIView):
+   def post(self, request):
+       serializer = STKPushSerializer(data=request.data)
+       if serializer.is_valid():
+           data = serializer.validated_data
+           daraja = DarajaAPI()
+           response = daraja.stk_push(
+               phone_number=data['phone_number'],
+               amount=data['amount'],
+               account_reference=data['account_reference'],
+               transaction_desc=data['transaction_desc']
+           )
+           return Response(response)
+       return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['POST'])
+def daraja_callback(request):
+   print("Daraja Callback Data:", request.data)
+   return Response({"ResultCode": 0, "ResultDesc": "Accepted"})
+
+
+
