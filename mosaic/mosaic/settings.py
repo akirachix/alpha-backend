@@ -51,9 +51,14 @@ INSTALLED_APPS = [
     'api',
     'order',
 
+    'django.contrib.staticfiles',
     'design_review',
-    'shopping_cart',
     'transaction',
+
+    'catalogue'
+
+    'api',
+    'rest_framework',
 
     'users',
 
