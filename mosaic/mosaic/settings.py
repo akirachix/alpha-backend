@@ -42,12 +42,23 @@ INSTALLED_APPS = [
     'traders',
     'payment',
     'order',
+
+
+    'django.contrib.staticfiles',
+
     'design_review',
-    'shopping_cart',
     'transaction',
-    'users',
-    'catalogue',
+
+    'catalogue'
+
     'api',
+    'rest_framework',
+
+    'users',
+
+    'api',
+    
+
     'rest_framework',
 ]
 
