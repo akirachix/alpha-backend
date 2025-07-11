@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'designers',
     'users',
 
-    'catalogue',
+    
 
     'traders',
 
@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'shopping_cart',
     'transaction',
 
-    'catalogue'
+    'catalogue',
 
     'api',
     'rest_framework',

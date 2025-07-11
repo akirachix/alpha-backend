@@ -1,5 +1,8 @@
 from rest_framework import serializers
 from payment.models import Payment
+from catalogue.models import Design
+
+
 
 
 class PaymentSerializer(serializers.ModelSerializer):
@@ -12,6 +15,10 @@ class STKPushSerializer(serializers.Serializer):
    amount = serializers.DecimalField(max_digits=10, decimal_places=2)
    account_reference = serializers.CharField()
    transaction_desc = serializers.CharField()
+class DesignSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Design
+        fields = "__all__"
 
 
 

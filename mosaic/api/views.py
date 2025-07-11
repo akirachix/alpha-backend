@@ -14,13 +14,15 @@ from rest_framework.response import Response
 
 
 
+
 class PaymentViewSet(viewsets.ModelViewSet):
    queryset=Payment.objects.all()
    serializer_class=PaymentSerializer
 
-class OrderViewSet(viewsets.ModelViewSet):
-   queryset = Order.objects.all()
-   serializer_class = OrderSerializer
+
+# class OrderViewSet(viewsets.ModelViewSet):
+#    queryset = Order.objects.all()
+#    serializer_class = OrderSerializer
 
 
 class STKPushView(APIView):
@@ -40,9 +42,9 @@ class STKPushView(APIView):
 
 from catalogue.models import Design
 from .serializers import DesignSerializer
-class DesignViewSet(viewets.ModelViewSet):
-    queryset=Design.objects.all()
-    serializer_class=DesignSerializer
+class DesignViewSet(viewsets.ModelViewSet):
+    queryset = Design.objects.all()
+    serializer_class = DesignSerializer
 
 @api_view(['POST'])
 def daraja_callback(request):

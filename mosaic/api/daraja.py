@@ -3,8 +3,6 @@ from django.conf import settings
 from requests.auth import HTTPBasicAuth
 import base64
 import datetime
-
-
 class DarajaAPI:
    def __init__(self):
        self.consumer_key = settings.DARAJA_CONSUMER_KEY
@@ -35,10 +33,9 @@ class DarajaAPI:
            "PartyB": self.business_shortcode,
            "PhoneNumber": phone_number,
            "CallBackURL": self.callback_url,
-           "AccountReference": account_reference, 
+           "AccountReference": account_reference,
            "TransactionDesc": transaction_desc,
        }
        url = f"{self.base_url}/mpesa/stkpush/v1/processrequest"
        response = requests.post(url, headers=headers, json=payload)
        return response.json()
-  
