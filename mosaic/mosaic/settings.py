@@ -36,13 +36,38 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+
     'django.contrib.staticfiles',
+    'designers',
+
+
+    'catalogue',
+
+    'traders',
+
+
+    'payment',
+
+    'api',
     'order',
+
+    'django.contrib.staticfiles',
+    'design_review',
+    'transaction',
+
+    'catalogue'
+
     'api',
     'rest_framework',
     
 
+    'users',
 
+    'api',
+    
+
+    'rest_framework',
+    
 
 ]
 
