@@ -19,31 +19,25 @@ Including another URLconf
 from django.contrib import admin
 
 from django.urls import path, include
-<<<<<<< HEAD
+
 
 urlpatterns = [
    path('admin/', admin.site.urls),
    path("api/",include("api.urls")),
 
-=======
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('api.urls')),  
-
-from django.urls import path,include
 
 urlpatterns = [
    path('admin/', admin.site.urls),path("api/",include("api.urls")),
     path('admin/', admin.site.urls),
     path('api/',include ('api.urls')),
 ]
+
 urlpatterns = [
    path('admin/', admin.site.urls),
    path("api/",include("api.urls")),
->>>>>>> df0fd973e8168909e79b74a49ccc5e5df48df02a
-]
 
+]
 
 
 

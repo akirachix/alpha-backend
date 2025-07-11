@@ -1,5 +1,5 @@
 from rest_framework import serializers
-<<<<<<< HEAD
+
 
 from users.models import Users  
 
@@ -11,7 +11,10 @@ class UsersSerializer(serializers.ModelSerializer):
         model = Users
         fields = ['id', 'full_name', 'email', 'phone_number', 'address', 'latitude', 'longitude', 'user_type']  
 
-=======
+
+from payment.models import Payment
+
+
 from transaction.models import Transaction
 from design_review.models import DesignReview
 class  TransactionSerializer(serializers.ModelSerializer):
@@ -22,14 +25,26 @@ class  DesignReviewSerializer(serializers.ModelSerializer):
       class Meta:
              model=DesignReview
              fields="__all__"
->>>>>>> df0fd973e8168909e79b74a49ccc5e5df48df02a
+
 from catalogue.models import Design
+
+
+
+
+class PaymentSerializer(serializers.ModelSerializer):
+   class Meta:
+       model = Payment
+       fields = "__all__"
+
+class STKPushSerializer(serializers.Serializer):
+   phone_number = serializers.CharField()
+   amount = serializers.DecimalField(max_digits=10, decimal_places=2)
+   account_reference = serializers.CharField()
+   transaction_desc = serializers.CharField()
 class DesignSerializer(serializers.ModelSerializer):
-       class Meta:
-              model=Design
-              fields="__all__"
-
-<<<<<<< HEAD
+    class Meta:
+        model = Design
+        fields = "__all__"
 
 
 
@@ -37,7 +52,8 @@ class DesignSerializer(serializers.ModelSerializer):
 
 
 
-=======
+
+
 from rest_framework import serializers
 from users.models import Users  
 
@@ -45,7 +61,12 @@ class UsersSerializer(serializers.ModelSerializer):
     latitude = serializers.DecimalField(max_digits=9, decimal_places=6, read_only=True)
     longitude = serializers.DecimalField(max_digits=9, decimal_places=6, read_only=True)
 
+
+
+
+
+
     class Meta:
         model = Users
         fields = ['id', 'full_name', 'email', 'phone_number', 'address', 'latitude', 'longitude', 'user_type']  
->>>>>>> df0fd973e8168909e79b74a49ccc5e5df48df02a
+
