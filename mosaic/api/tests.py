@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> df0fd973e8168909e79b74a49ccc5e5df48df02a
 from rest_framework.test import APITestCase
 from django.urls import reverse
 from django.test import TestCase
@@ -79,9 +75,7 @@ class UsersModelTestCase(TestCase):
         user.delete()
         self.assertFalse(Users.objects.filter(id=user_id).exists())
 
-<<<<<<< HEAD
 from django.test import TestCase
-=======
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -193,7 +187,7 @@ class DesignReviewAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(DesignReview.objects.count(), 1)
         self.assertFalse(DesignReview.objects.filter(pk=self.design_review1.pk).exists())
->>>>>>> df0fd973e8168909e79b74a49ccc5e5df48df02a
+
 
 
 
