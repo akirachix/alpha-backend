@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 from rest_framework import viewsets
 from django.shortcuts import render
 from .serializers import TransactionSerializer,DesignReviewSerializer
@@ -13,7 +12,7 @@ class TransactionViewSet(viewsets.ModelViewSet):
 class DesignReviewViewSet(viewsets.ModelViewSet):
    queryset=DesignReview.objects.all()
    serializer_class=DesignReviewSerializer
->>>>>>> df0fd973e8168909e79b74a49ccc5e5df48df02a
+
 
 from rest_framework import viewsets
 from users.models import Users
@@ -62,7 +61,6 @@ class UsersViewSet(viewsets.ModelViewSet):
         serializer.save(latitude=lat, longitude=lon)
 
 
-<<<<<<< HEAD
 
 from django.shortcuts import render
 from rest_framework import viewsets
