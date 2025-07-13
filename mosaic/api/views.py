@@ -77,6 +77,3 @@ class DesignViewSet(viewsets.ModelViewSet):
 
   
 
-=======
->>>>>>> df0fd973e8168909e79b74a49ccc5e5df48df02a
-
