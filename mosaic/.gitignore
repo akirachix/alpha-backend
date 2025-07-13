@@ -2,3 +2,8 @@ mosaicenv/
 __pycache__/
 *.pyc
 db.sqlite3
+*.pyc
+__pycache__/ *.pyc
+*.pyc
+*.pyc
+__pycache__/
