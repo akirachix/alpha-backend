@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from transaction.models import Transaction
 from design_review.models import DesignReview
+
 class  TransactionSerializer(serializers.ModelSerializer):
       class Meta:
              model=Transaction
@@ -9,7 +10,7 @@ class  DesignReviewSerializer(serializers.ModelSerializer):
       class Meta:
              model=DesignReview
              fields="__all__"
-from catalogue.models import Design
+from catalogue.models import Design,Category
 class DesignSerializer(serializers.ModelSerializer):
        class Meta:
               model=Design
@@ -25,12 +26,20 @@ class UsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Users
         fields = ['id', 'full_name', 'email', 'phone_number', 'address', 'latitude', 'longitude', 'user_type']  
+
 from rest_framework import serializers
-from shopping_cart.models import Shopping_cart
+from shopping_cart.models import Shopping_cart, Shopping_cart_item
 class  ShoppingCartSerializer(serializers.ModelSerializer):
       class Meta:
              model=Shopping_cart
              fields="__all__"
+
+class  ShoppingCartItemSerializer(serializers.ModelSerializer):
+      class Meta:
+             model=Shopping_cart_item
+             fields="__all__"
+
+
 import requests
 from django.conf import settings
 from requests.auth import HTTPBasicAuth

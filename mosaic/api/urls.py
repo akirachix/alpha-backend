@@ -1,7 +1,7 @@
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import (UsersViewSet, TransactionViewSet, DesignReviewViewSet, DesignViewSet,ShoppingCartViewSet,PaymentViewSet, STKPushView, daraja_callback,OrderViewSet)
+from .views import (UsersViewSet, TransactionViewSet, DesignReviewViewSet, DesignViewSet,ShoppingCartViewSet,PaymentViewSet, shoppingCartItemViewSet, STKPushView, daraja_callback,OrderViewSet)
 
 router = DefaultRouter()
 
@@ -9,7 +9,8 @@ router.register(r'users', UsersViewSet, basename='users')
 router.register(r'transaction', TransactionViewSet, basename='transaction')
 router.register(r'design_review', DesignReviewViewSet, basename='design_review')
 router.register(r'design', DesignViewSet, basename='design')
-router.register(r"shopping_cart", ShoppingCartViewSet, basename="shopping_cart")
+router.register(r"shopping_cart", shoppingCartItemViewSet, basename="shopping_cart")
+router.register(r"shopping_cart_item", ShoppingCartViewSet, basename="shopping_cart_item")
 router.register(r"payments", PaymentViewSet, basename="payment")
 router.register(r'order', OrderViewSet, basename='order')
 

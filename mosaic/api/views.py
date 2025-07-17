@@ -1,10 +1,13 @@
 from rest_framework import viewsets
 from django.shortcuts import render
 from .serializers import DesignSerializer
-from .serializers import (TransactionSerializer,DesignReviewSerializer,ShoppingCartSerializer,UsersSerializer,PaymentSerializer, STKPushSerializer,OrderSerializer)
+from .serializers import (
+    TransactionSerializer, DesignReviewSerializer, ShoppingCartSerializer,
+    UsersSerializer, PaymentSerializer, STKPushSerializer, OrderSerializer,ShoppingCartItemSerializer
+)
 from transaction.models import Transaction
 from design_review.models import DesignReview
-from shopping_cart.models import Shopping_cart
+from shopping_cart.models import Shopping_cart, Shopping_cart_item
 from users.models import Users
 from payment.models import Payment
 from rest_framework.views import APIView
@@ -16,7 +19,6 @@ from rest_framework.response import Response
 from catalogue.models import Design
 from api.utils import get_coordinates_from_address 
 import requests
-from catalogue.models import Design
 from order.models import Order
 class TransactionViewSet(viewsets.ModelViewSet):
    queryset = Transaction.objects.all()
@@ -25,6 +27,9 @@ class TransactionViewSet(viewsets.ModelViewSet):
 class DesignReviewViewSet(viewsets.ModelViewSet):
    queryset=DesignReview.objects.all()
    serializer_class=DesignReviewSerializer
+class shoppingCartItemViewSet(viewsets.ModelViewSet):
+   queryset=Shopping_cart_item.objects.all()
+   serializer_class=ShoppingCartItemSerializer
 class ShoppingCartViewSet(viewsets.ModelViewSet):
    queryset=Shopping_cart.objects.all()
    serializer_class=ShoppingCartSerializer
@@ -95,9 +100,7 @@ def daraja_callback(request):
    print("Daraja Callback Data:", request.data)
    return Response({"ResultCode": 0, "ResultDesc": "Accepted"})
 
-class ShoppingCartViewSet(viewsets.ModelViewSet):
-   queryset=Shopping_cart.objects.all()
-   serializer_class=ShoppingCartSerializer
+
 
 from order.models import Order
 from .serializers import OrderSerializer
