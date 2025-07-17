@@ -1,8 +1,8 @@
 from django.db import models
-# from order.models import Order
+from order.models import Order
 # Create your models here.
 class DesignReview(models.Model):
-#    designOrders = models.ForeignKey('design_review.Order', on_delete=models.CASCADE, related_name='dr_design_reviews')
+  designOrders = models.ForeignKey('design_review.Order', on_delete=models.CASCADE, related_name='dr_design_reviews',null=True, blank=True)
   rating_value = models.IntegerField()
   comment = models.TextField()
 
