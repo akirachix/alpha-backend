@@ -1,7 +1,9 @@
 from django.contrib import admin
-from .models import design_review
+from .models import DesignReview
+
 
 # Register your models here.
 
-admin.site.register(design_review)
+
+admin.site.register(DesignReview)
 

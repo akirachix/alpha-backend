@@ -1,16 +1,19 @@
 from django.db import models
-from order.models import Order
-from traders.models import Trader
+
+from users.models import Users
+from catalogue.models import Design
 
 
-# Create your models here.
+
 class Payment(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    trader = models.ForeignKey(Trader, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits = 10, decimal_places = 2)
-    phone_number = models.CharField()
-    mpesa_receipt_number = models.CharField()
-    paid_at = models.DateField
-    created_at = models.DateField
-    update_at = models.DateField
-    delivery_at = models.DateField()
+    user = models.ForeignKey(Users,on_delete=models.CASCADE, null=True, blank=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=0)
+    phone_number = models.CharField(max_length=16)
+    mpesa_receipt_number = models.CharField(max_length=100)
+    design_item=models.ForeignKey(Design, on_delete=models.CASCADE, null=True, blank=True)
+    
+
+
+   
+  
+   
