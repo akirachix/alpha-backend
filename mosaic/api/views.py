@@ -16,10 +16,12 @@ from rest_framework import status
 from .daraja import DarajaAPI
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from catalogue.models import Design
+from catalogue.models import Design,Category
 from api.utils import get_coordinates_from_address 
 import requests
 from order.models import Order
+
+
 class TransactionViewSet(viewsets.ModelViewSet):
    queryset = Transaction.objects.all()
    serializer_class = TransactionSerializer
@@ -36,6 +38,7 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
 class DesignViewSet(viewsets.ModelViewSet):
     queryset=Design.objects.all()
     serializer_class=DesignSerializer
+
 def get_coordinates_from_address(address):
     url = 'https://nominatim.openstreetmap.org/search'
     params = {

@@ -7,3 +7,4 @@ __pycache__/ *.pyc
 *.pyc
 *.pyc
 __pycache__/
+.env

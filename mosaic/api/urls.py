@@ -11,6 +11,7 @@ router.register(r'design_review', DesignReviewViewSet, basename='design_review')
 router.register(r'design', DesignViewSet, basename='design')
 router.register(r"shopping_cart", shoppingCartItemViewSet, basename="shopping_cart")
 router.register(r"shopping_cart_item", ShoppingCartViewSet, basename="shopping_cart_item")
+router.register(r"category", ShoppingCartViewSet, basename="category")
 router.register(r"payments", PaymentViewSet, basename="payment")
 router.register(r'order', OrderViewSet, basename='order')
 
