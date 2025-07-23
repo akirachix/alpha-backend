@@ -1,7 +1,6 @@
 from django.db import models
 from users.models import Users
 
-
 class Order(models.Model):
     design_order = models.AutoField(primary_key=True)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, blank=True) 
