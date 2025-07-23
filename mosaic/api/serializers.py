@@ -28,15 +28,15 @@ class UsersSerializer(serializers.ModelSerializer):
         fields = ['id', 'full_name', 'email', 'phone_number', 'address', 'latitude', 'longitude', 'user_type']  
 
 from rest_framework import serializers
-from shopping_cart.models import Shopping_cart, Shopping_cart_item
+from shopping_cart.models import Shopping_cart, Item
 class  ShoppingCartSerializer(serializers.ModelSerializer):
       class Meta:
              model=Shopping_cart
              fields="__all__"
 
-class  ShoppingCartItemSerializer(serializers.ModelSerializer):
+class  ItemSerializer(serializers.ModelSerializer):
       class Meta:
-             model=Shopping_cart_item
+             model=Item
              fields="__all__"
 
 

@@ -39,6 +39,22 @@ class DarajaAPI:
        url = f"{self.base_url}/mpesa/stkpush/v1/processrequest"
        response = requests.post(url, headers=headers, json=payload)
        return response.json()
+import base64
+import datetime
+import requests
+from requests.auth import HTTPBasicAuth
+from django.conf import settings
+def get_access_token():
+    url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+    response = requests.get(url, auth=HTTPBasicAuth(
+        settings.DARAJA_CONSUMER_KEY,
+        settings.DARAJA_CONSUMER_SECRET
+    ))
+    return response.json().get("access_token")
+def generate_password(shortcode, passkey, timestamp):
+    data = f"{shortcode}{passkey}{timestamp}"
+    encoded = base64.b64encode(data.encode()).decode()
+    return encoded
 
 
 
