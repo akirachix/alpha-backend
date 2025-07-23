@@ -5,6 +5,7 @@ import base64
 import datetime
 
 
+
 class DarajaAPI:
    def __init__(self):
        self.consumer_key = settings.DARAJA_CONSUMER_KEY
