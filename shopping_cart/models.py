@@ -2,7 +2,6 @@ from django.db import models
 from users.models import Users
 from catalogue.models import Design
 
-
 class Item(models.Model):
     design_item=models.ForeignKey(Design, on_delete=models.CASCADE)
     quantity=models.IntegerField()

@@ -4,7 +4,6 @@ from users.models import Users
 from catalogue.models import Design
 
 
-
 class Payment(models.Model):
     user = models.ForeignKey(Users,on_delete=models.CASCADE, null=True, blank=True)
     amount = models.DecimalField(max_digits=10, decimal_places=0)

@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 USER_TYPE_CHOICES = [
        ('Designer', 'Designer'),
        ('Trader', 'Trader'),

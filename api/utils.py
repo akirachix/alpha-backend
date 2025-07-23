@@ -1,5 +1,4 @@
 import requests
-
 def get_coordinates_from_address(address):
     """Get latitude and longitude from an address using Nominatim."""
     if not address:

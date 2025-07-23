@@ -23,7 +23,6 @@ from order.models import Order
 class TransactionViewSet(viewsets.ModelViewSet):
    queryset = Transaction.objects.all()
    serializer_class = TransactionSerializer
-  
 class DesignReviewViewSet(viewsets.ModelViewSet):
    queryset=DesignReview.objects.all()
    serializer_class=DesignReviewSerializer

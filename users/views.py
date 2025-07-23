@@ -4,7 +4,6 @@ from rest_framework import status
 from .models import Users
 from api.serializers import UsersSerializer
 from api.utils import get_coordinates_from_address
-
 class UserCreateView(generics.CreateAPIView):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer

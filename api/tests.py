@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.test import TestCase
 from users.models import Users
 
+
 class UsersAPITestCase(APITestCase):
     def setUp(self):
         self.user_data = {

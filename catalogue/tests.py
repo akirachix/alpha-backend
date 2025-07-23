@@ -2,6 +2,7 @@ from django.test import TestCase
 from .models import Design
 from decimal import Decimal
 
+
 class DesignModelTests(TestCase):
     def setUp(self):
         self.design = Design.objects.create(

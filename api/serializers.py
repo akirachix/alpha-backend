@@ -2,6 +2,7 @@ from rest_framework import serializers
 from transaction.models import Transaction
 from design_review.models import DesignReview
 
+
 class  TransactionSerializer(serializers.ModelSerializer):
       class Meta:
              model=Transaction

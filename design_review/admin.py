@@ -4,6 +4,5 @@ from .models import DesignReview
 
 # Register your models here.
 
-
 admin.site.register(DesignReview)
 

@@ -4,7 +4,6 @@ from rest_framework.routers import DefaultRouter
 from .views import (UsersViewSet, TransactionViewSet, DesignReviewViewSet, DesignViewSet,ShoppingCartViewSet,PaymentViewSet, ItemViewSet, STKPushView, daraja_callback,OrderViewSet)
 
 router = DefaultRouter()
-
 router.register(r'users', UsersViewSet, basename='users')
 router.register(r'transaction', TransactionViewSet, basename='transaction')
 router.register(r'design_review', DesignReviewViewSet, basename='design_review')
