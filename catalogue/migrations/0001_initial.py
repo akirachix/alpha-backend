@@ -9,25 +9,26 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('order', '__first__'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name='Category',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('name', models.CharField(blank=True, max_length=28)),
             ],
         ),
         migrations.CreateModel(
-            name='DesignReview',
+            name='Design',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('rating_value', models.IntegerField()),
-                ('comment', models.TextField()),
-                ('design_order', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='dr_design_reviews', to='order.order')),
+                ('design_name', models.CharField(max_length=50)),
+                ('price', models.DecimalField(decimal_places=2, max_digits=10)),
+                ('material_type', models.CharField(max_length=50)),
+                ('design_image', models.CharField(max_length=50)),
+                ('design_size', models.CharField(max_length=20)),
+                ('category', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='catalogue.category')),
             ],
         ),
     ]
