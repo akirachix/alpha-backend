@@ -156,36 +156,6 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# from rest_framework import viewsets
-# from users.models import Users
-# from .serializers import UsersSerializer
-# from api.utils import get_coordinates_from_address
-# import requests
-# from django.shortcuts import render
-# from rest_framework import viewsets
-# from payment.models import Payment
-# from .serializers import PaymentSerializer
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from rest_framework import status
-# from .daraja import DarajaAPI
-# from .serializers import STKPushSerializer
-# from rest_framework.decorators import api_view
-# from rest_framework.response import Response
 class PaymentViewSet(viewsets.ModelViewSet):
    queryset=Payment.objects.all()
    serializer_class=PaymentSerializer
